@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="health.back.a.dao.WorkBbsDao" >
+ 
+	<select id="getBbsList" resultType="health.back.a.dto.WorkBbsDto">
+		SELECT * FROM WORKBBS
+		ORDER BY REF DESC, STEP ASC
+	</select>
+	
+	<insert id="writeBbs" parameterType="health.back.a.dto.WorkBbsDto">
+		INSERT INTO WORKBBS(WORKBBSSEQ, ID, NICKNAME,
+							TITLE, CONTENT, WDATE,
+							REF, STEP, DEPTH,
+							DEL, READCOUNT, BBSLIKE, BBSIMAGE)
+		VALUES(				WORKBBSSEQ_WORKBBS.NEXTVAL, #{id}, #{nickname},
+							#{title}, #{content}, SYSDATE,
+							(SELECT NVL(MAX(REF)+1, 0) FROM WORKBBS), 0, 0,
+							0, 0, 0, #{bbsImage})
+	</insert>
+	
+	<select id="bbsDetail" parameterType="java.lang.Integer" resultType="health.back.a.dto.WorkBbsDto">
+		SELECT * FROM WORKBBS
+		WHERE WORKBBSSEQ=#{seq}
+	</select>
+	
+	<update id="updateBbs" parameterType="health.back.a.dto.WorkBbsDto">
+		UPDATE WORKBBS
+		SET TITLE=#{title}, CONTENT=#{content}
+		WHERE WORKBBSSEQ=#{seq}
+	</update>
+ 
+ </mapper>
