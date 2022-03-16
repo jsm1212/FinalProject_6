@@ -89,6 +89,21 @@ public class WorkBbsController {
 		// 수정된 데이터가 DB에 반영 실패했을 경우
 		return "fail";
 	}
+	
+	// 게시글 수정_App
+		@RequestMapping(value = "/updateBbs_M", method = {RequestMethod.GET, RequestMethod.POST})
+		public String updateBbs_M(@RequestBody WorkBbsDto dto) {
+			// 클라이언트에서 받은 수정된 게시글 데이터
+			System.out.println("수정된 게시글 정보 : " + dto);
+			
+			boolean b = sv.updateBbs(dto);
+			if(b) {
+				// 수정된 데이터가 정상적으로 DB에 반영됐을 경우
+				return "success";
+			}
+			// 수정된 데이터가 DB에 반영 실패했을 경우
+			return "fail";
+		}
 }
 
 
