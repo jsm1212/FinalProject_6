@@ -5,33 +5,5 @@
   
   <mapper namespace="health.back.a.dao.LoginMemberDao">
   	
-  	<select id="getId" parameterType="health.back.a.dto.LoginMemberDto" resultType="java.lang.Integer">
-		SELECT NVL(COUNT(*), 0) 
-		FROM LOGINMEMBERS
-		WHERE ID=#{id}
-	</select>
-	
-	<select id="login" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.LoginMemberDto">
-		SELECT *
-		FROM LOGINMEMBERS
-		WHERE ID=#{id} AND PWD=#{pwd}
-	</select>
-	
-	<select id="register" parameterType="health.back.a.dto.LoginMemberDto">
-		INSERT INTO LOGINMEMBERS(ID, PWD, NAME, NICKNAME, GENDER, AGE, EMAIL, TEL, AUTH, REGIDATE)
-		VALUES(#{id), #{pwd}, #{name}, #{nickname}, #{gender}, #{age}, #{email}, #{tel}, 3, SYSDATE)
-	</select>
-	
-	<select id="allMember" resultType="health.back.a.dto.LoginMemberDto">
-		SELECT *
-		FROM LOGINMEMBERS
-		WHERE AUTH=3
-	</select>
-	
-	<select id="checkEmail" parameterType="health.back.a.dto.LoginMemberDto" resultType="java.lang.Integer">
-		SELECT NVL(COUNT(*), 0)
-		FROM LOGINMEMBERS
-		WHERE EMAIL=#{email}
-	</select>
 	
   </mapper>

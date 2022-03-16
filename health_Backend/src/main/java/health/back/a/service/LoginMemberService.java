@@ -1,13 +1,10 @@
 package health.back.a.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import health.back.a.dao.LoginMemberDao;
-import health.back.a.dto.LoginMemberDto;
 
 @Service
 @Transactional
@@ -15,28 +12,4 @@ public class LoginMemberService {
 	
 	@Autowired
 	LoginMemberDao dao;
-	
-	public boolean getId(LoginMemberDto dto) {
-		int i = dao.getId(dto);
-		return i>0?true:false;
-	}
-	
-	public LoginMemberDto login(LoginMemberDto dto) {
-		return dao.login(dto);
-	}
-	
-	public boolean register(LoginMemberDto dto) {
-		int i = dao.register(dto);
-		
-		return i>0?true:false;
-	}
-	
-	public List<LoginMemberDto> allMember() {
-		return dao.allMember();
-	}
-	
-	public boolean checkEmail(LoginMemberDto dto) {
-		int i = dao.checkEmail(dto);
-		return i>0?true:false;
-	}
 }
