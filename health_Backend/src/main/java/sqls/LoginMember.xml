@@ -17,10 +17,10 @@
 		WHERE ID=#{id} AND PWD=#{pwd}
 	</select>
 	
-	<select id="register" parameterType="health.back.a.dto.LoginMemberDto">
+	<insert id="register" parameterType="health.back.a.dto.LoginMemberDto">
 		INSERT INTO LOGINMEMBERS(ID, PWD, NAME, NICKNAME, GENDER, AGE, EMAIL, TEL, AUTH, REGIDATE)
-		VALUES(#{id), #{pwd}, #{name}, #{nickname}, #{gender}, #{age}, #{email}, #{tel}, 3, SYSDATE)
-	</select>
+		VALUES(#{id}, #{pwd}, #{name}, #{nickname}, #{gender}, #{age}, #{email}, #{tel}, 3, SYSDATE)
+	</insert>
 	
 	<select id="allMember" resultType="health.back.a.dto.LoginMemberDto">
 		SELECT *

@@ -3,17 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="health.back.a.dao.WorkReplyDao">
+ <mapper namespace="health.back.a.dto.WorkReplyDao">
  
  	<!-- 댓글 리스트 불러오기 -->
- 	<select id="getReplyList" parameterType="java.lang.Integer" resultType="health.back.a.dao.WorkReplyDto">
+ 	<select id="getReplyList" parameterType="java.lang.Integer" resultType="health.back.a.dto.WorkReplyDto">
  		SELECT * FROM WORKREPLY
  		WHERE REPLYNUM=#{seq}
  		ORDER BY WDATE ASC
  	</select>
  	
  	<!-- 댓글 작성하기 -->
- 	<insert id="writeReply" parameterType="health.back.a.dao.WorkReplyDto">
+ 	<insert id="writeReply" parameterType="health.back.a.dto.WorkReplyDto">
  		INSERT INTO WORKREPLY(	WORKREPLYSEQ, REPLYNUM, ID, NICKNAME,
  								TITLE, CONTENT, WDATE,
  								REF, STEP, DEPTH,
@@ -25,7 +25,7 @@
  	</insert>
  	
  	<!-- 댓글 수정하기 -->
- 	<update id="updateReply" parameterType="health.back.a.dao.WorkReplyDto">
+ 	<update id="updateReply" parameterType="health.back.a.dto.WorkReplyDto">
  		UPDATE WORKREPLY
  		SET TITLE=#{title}, CONTENT=#{content}, REPLYIMAGE=#{replyImage}
  		WHERE WORKREPLYSEQ=#{seq}
