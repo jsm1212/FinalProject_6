@@ -8,6 +8,7 @@
  	<!-- 게시판 전체 리스트 -->
 	<select id="getBbsList" resultType="health.back.a.dto.WorkBbsDto">
 		SELECT * FROM WORKBBS
+		WHERE DEL=0 AND DEL=2
 		ORDER BY REF DESC, STEP ASC
 	</select>
 	
