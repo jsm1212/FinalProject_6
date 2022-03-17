@@ -20,4 +20,10 @@ public interface LoginMemberDao {
 	public List<LoginMemberDto> allMember();
 	
 	public int checkEmail(LoginMemberDto dto);
+	
+	public int checkNickname(LoginMemberDto dto);
+	
+	public LoginMemberDto findId(LoginMemberDto dto);
+	
+	public LoginMemberDto findPwd(LoginMemberDto dto);
 }

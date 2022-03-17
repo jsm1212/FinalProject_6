@@ -39,4 +39,16 @@ public class LoginMemberService {
 		int i = dao.checkEmail(dto);
 		return i>0?true:false;
 	}
+	
+	public boolean checkNickname(LoginMemberDto dto) {
+		return dao.checkNickname(dto)>0?true:false;
+	}
+	
+	public LoginMemberDto findId(LoginMemberDto dto) {
+		return dao.findId(dto);
+	}
+	
+	public LoginMemberDto findPwd(LoginMemberDto dto) {
+		return dao.findPwd(dto);
+	}
 }

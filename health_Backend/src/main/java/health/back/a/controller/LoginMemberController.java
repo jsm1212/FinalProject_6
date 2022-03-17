@@ -81,6 +81,37 @@ public class LoginMemberController {
 		return "y";
 	}
 	
+	@RequestMapping(value = "/checkNickname", method = {RequestMethod.GET, RequestMethod.POST})
+	public String checkNickname(LoginMemberDto dto) {
+		log.info("LoginMemberController checkNickname()" + new Date());
+		
+		boolean b = service.checkNickname(dto);
+		
+		if(b) {
+			return "n";
+		}
+		return "y";
+	}
+	
+	@RequestMapping(value = "/findId", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto findId(LoginMemberDto dto) {
+		log.info("LoginMemberController findId()" + new Date());
+		
+		LoginMemberDto info = service.findId(dto);
+		
+		return info;
+	}
+	
+	@RequestMapping(value = "/findPwd", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto findPwd(LoginMemberDto dto) {
+		log.info("LoginMemberController findPwd()" + new Date());
+		
+		LoginMemberDto info = service.findPwd(dto);
+		
+		return info;
+	}
+	
+	
 	// 모바일
 	
 	// 아이디 중복 검사
@@ -125,6 +156,19 @@ public class LoginMemberController {
 			
 		boolean b = service.checkEmail(dto);
 			
+		if(b) {
+			return "n";
+		}
+		return "y";
+	}
+	
+	// 닉네임 중복 검사
+	@RequestMapping(value = "/checkNickname_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public String checkNickname_M(@RequestBody LoginMemberDto dto) {
+		log.info("LoginMemberController checkNickname_M()" + new Date());
+		
+		boolean b = service.checkNickname(dto);
+		
 		if(b) {
 			return "n";
 		}
