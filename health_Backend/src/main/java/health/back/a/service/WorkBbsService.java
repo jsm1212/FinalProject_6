@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import health.back.a.dao.WorkBbsDao;
 import health.back.a.dto.WorkBbsDto;
+import health.back.a.dto.WorkBbsParam;
 
 @Service
 @Transactional
@@ -21,7 +22,7 @@ public class WorkBbsService {
 		return dao.getBbsList();
 	}
 	
-	// 게시판 글쓰기
+	// 게시판 글 작성
 	public boolean writeBbs(WorkBbsDto dto) {
 		int n = dao.writeBbs(dto);
 		return n>0?true:false;
@@ -32,10 +33,36 @@ public class WorkBbsService {
 		return dao.bbsDetail(seq);
 	}
 	
-	// 게시글 수정
+	// 게시판 글 수정
 	public boolean updateBbs(WorkBbsDto dto) {
 		int n = dao.updateBbs(dto);		
 		return n>0?true:false;
+	}
+	
+	// 게시판 글 삭제
+	public boolean deleteBbs(int seq) {
+		int n = dao.deleteBbs(seq);
+		return n>0?true:false;
+	}
+	
+	// 게시판 글 조회수
+	public void readcount(int seq) {
+		dao.readcount(seq);
+	}
+	
+	// 게시판 검색기능
+	public List<WorkBbsDto> getBbsListSearch(WorkBbsParam param) {
+		return dao.getBbsListSearch(param);
+	}
+	
+	// 게시판 페이징 기능
+	public List<WorkBbsDto> getBbsListSearchPage(WorkBbsParam param) {
+		return dao.getBbsListSearchPage(param);
+	}
+	
+	// 게시판 글 총 갯수
+	public int getBbsCount(WorkBbsParam param) {
+		return dao.getBbsCount(param);
 	}
 }
 
