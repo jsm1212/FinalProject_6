@@ -168,7 +168,7 @@ public class WorkBbsController {
 	
 	// 게시판 검색기능_App
 	@RequestMapping(value = "/getBbsListSearch_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkBbsDto> getBbsListSearch_M(WorkBbsParam param) {
+	public List<WorkBbsDto> getBbsListSearch_M(@RequestBody WorkBbsParam param) {
 		// 클라이언트에서 받은 게시글 검색옵션
 		System.out.println("게시글 검색옵션 : " + param);
 		
