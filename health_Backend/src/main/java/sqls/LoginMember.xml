@@ -41,13 +41,13 @@
 	</select>
 	
 	<select id="findId" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.LoginMemberDto">
-		SELECT ID
+		SELECT *
 		FROM LOGINMEMBERS
 		WHERE NAME=#{name} and TEL=#{tel}
 	</select>
 	
 	<select id="findPwd" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.LoginMemberDto">
-		SELECT PWD
+		SELECT *
 		FROM LOGINMEMBERS
 		WHERE ID=#{id} and NAME=#{name} and TEL=#{tel}
 	</select>
