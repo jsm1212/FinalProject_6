@@ -2,10 +2,16 @@ package health.back.a.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.naming.spi.DirStateFactory.Result;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,15 +54,16 @@ public class LoginMemberController {
 	
 	// 회원가입
 	@RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST})
-	public String register(LoginMemberDto dto) {
+	public String register(@Valid LoginMemberDto dto, Errors err) {
 		log.info("LoginMemberController register()" + new Date());
 		
-		boolean b = service.register(dto);
-		
-		if(b) {
-			return "y";
+		if(err.hasErrors()) {
+			for(FieldError fe: err.getFieldErrors()) {
+				log.info(fe.getDefaultMessage());
+				return fe.getDefaultMessage();
+				}
 		}
-		return "n";
+		return service.register(dto)?"y":"n";
 	}
 	
 	// 회원 전체 조회
