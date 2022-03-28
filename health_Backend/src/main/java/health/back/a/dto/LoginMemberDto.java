@@ -17,7 +17,8 @@ public class LoginMemberDto {
 	EMAIL VARCHAR2(70) UNIQUE,
 	TEL VARCHAR2(70) NOT NULL,
 	AUTH NUMBER(10) NOT NULL,
-	REGIDATE DATE NOT NULL
+	REGIDATE DATE NOT NULL,
+	TRAINER VARCHAR2
 	);
 	
 	
@@ -53,12 +54,20 @@ public class LoginMemberDto {
 	private int auth;
 	private String regidate;
 	
+	private String trainer;
+	
 	public LoginMemberDto() {
 		
 	}
 
-	public LoginMemberDto(String id, String pwd, String name, String nickname, String gender, int age, String email,
-			String tel, int auth, String regidate) {
+	public LoginMemberDto(@NotBlank(message = "아이디를 입력하세요.") String id,
+			@NotBlank(message = "비밀번호를 입력하세요.") @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}", message = "비밀번호는 영문 대 소문자, 숫자, 특수문자를 포함하여 8자 이상만 가능합니다.") String pwd,
+			@NotBlank(message = "이름을 입력하세요.") String name,
+			@NotBlank(message = "닉네임을 입력하세요.") @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9-_]{2,10}$", message = "닉네임은 특수문자를 제외한 2~10자리만 가능합니다.") String nickname,
+			@NotBlank(message = "성별을 선택하세요.") String gender, @NotNull(message = "나이를 입력하세요.") int age,
+			@NotBlank(message = "이메일을 입력하세요.") @Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.") String email,
+			@NotBlank(message = "핸드폰번호를 입력하세요.") @Pattern(regexp = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$", message = "핸드폰번호 형식이 올바르지 않습니다.") String tel,
+			int auth, String regidate, String trainer) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -70,6 +79,7 @@ public class LoginMemberDto {
 		this.tel = tel;
 		this.auth = auth;
 		this.regidate = regidate;
+		this.trainer = trainer;
 	}
 
 	public String getId() {
@@ -152,12 +162,22 @@ public class LoginMemberDto {
 		this.regidate = regidate;
 	}
 
+	public String getTrainer() {
+		return trainer;
+	}
+
+	public void setTrainer(String trainer) {
+		this.trainer = trainer;
+	}
+
 	@Override
 	public String toString() {
 		return "LoginMemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", nickname=" + nickname + ", gender="
 				+ gender + ", age=" + age + ", email=" + email + ", tel=" + tel + ", auth=" + auth + ", regidate="
-				+ regidate + "]";
+				+ regidate + ", trainer=" + trainer + "]";
 	}
+
+	
 	
 	
 }

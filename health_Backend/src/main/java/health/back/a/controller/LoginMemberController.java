@@ -59,6 +59,7 @@ public class LoginMemberController {
 		
 		if(err.hasErrors()) {
 			for(FieldError fe: err.getFieldErrors()) {
+				System.out.println(fe.getField());
 				log.info(fe.getDefaultMessage());
 				return fe.getDefaultMessage();
 				}
