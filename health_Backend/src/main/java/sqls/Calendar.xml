@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="health.back.a.dao.CalendarDao">
+  	
+<insert id="writeCalendar" parameterType="health.back.a.dto.CalendarDto">
+	INSERT INTO CALENDAR(CALENDARSEQ,TITLE,CONTENT,WDATE,DEL,ID,CALENDARDATE)
+	VALUES(CALENDARSEQ_CALENDAR.NEXTVAL,#{title},#{content},SYSDATE,0,#{id},#{calendardate})
+</insert>	
+
+<update id="updateCalendar" parameterType="health.back.a.dao.CalendarDao">
+	UPDATE CALENDAR
+	SET CONTENT=#{content}
+	WHERE CALENDARDATE=#{calendardate}
+</update>
+
+<!-- 딜리트 사용하기 -->	
+<update id="deleteCalendar" parameterType="java.lang.Integer">
+	UPDATE CALENDAR
+	SET DEL=1
+	WHERE CALENDARSEQ=#{calendarseq}
+</update>
+
+  </mapper>
