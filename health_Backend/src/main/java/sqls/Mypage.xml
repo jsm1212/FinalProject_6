@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 내 댓글 목록 -->
-		<select id="getMyBbs" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.WorkBbsDto">
+		<select id="getMyReply" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.WorkBbsDto">
 		SELECT * FROM WORKREPLY
 		WHERE ID=#{id}
 		ORDER BY WDATE DESC
