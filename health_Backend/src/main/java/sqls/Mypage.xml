@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="health.back.a.dao.MypageDao" >
+	<!-- 회원정보 수정 -->
+	<update id="memberUpdate" parameterType="health.back.a.dto.LoginMemberDto">
+		UPDATE LOGINMEMBERS SET NICKNAME=#{nickname}, EMAIL=#{email}, TEL=#{tel}
+		WHERE ID=#{id}
+	</update>
+	
+	<!-- 운동 루틴 -->
+	
+	<!-- 내 게시글 목록 -->
+	<select id="getMyBbs" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.WorkBbsDto">
+		SELECT * FROM WORKBBS
+		WHERE ID=#{id}
+		ORDER BY WDATE DESC
+	</select>
+	
+	<!-- 내 댓글 목록 -->
+		<select id="getMyBbs" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.WorkBbsDto">
+		SELECT * FROM WORKREPLY
+		WHERE ID=#{id}
+		ORDER BY WDATE DESC
+	</select>
+	
+	<!-- 좋아요 누른 글 목록 -->
+</mapper>
