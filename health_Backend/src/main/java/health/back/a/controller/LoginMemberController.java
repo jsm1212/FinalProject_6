@@ -2,10 +2,16 @@ package health.back.a.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.naming.spi.DirStateFactory.Result;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,15 +54,17 @@ public class LoginMemberController {
 	
 	// 회원가입
 	@RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST})
-	public String register(LoginMemberDto dto) {
+	public String register(@Valid LoginMemberDto dto, Errors err) {
 		log.info("LoginMemberController register()" + new Date());
 		
-		boolean b = service.register(dto);
-		
-		if(b) {
-			return "y";
+		if(err.hasErrors()) {
+			for(FieldError fe: err.getFieldErrors()) {
+				System.out.println(fe.getField());
+				log.info(fe.getDefaultMessage());
+				return fe.getDefaultMessage();
+				}
 		}
-		return "n";
+		return service.register(dto)?"y":"n";
 	}
 	
 	// 회원 전체 조회
@@ -80,6 +88,40 @@ public class LoginMemberController {
 		}
 		return "y";
 	}
+	
+	// 닉네임 중복 검사
+	@RequestMapping(value = "/checkNickname", method = {RequestMethod.GET, RequestMethod.POST})
+	public String checkNickname(LoginMemberDto dto) {
+		log.info("LoginMemberController checkNickname()" + new Date());
+		
+		boolean b = service.checkNickname(dto);
+		
+		if(b) {
+			return "n";
+		}
+		return "y";
+	}
+	
+	// 아이디 찾기
+	@RequestMapping(value = "/findId", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto findId(LoginMemberDto dto) {
+		log.info("LoginMemberController findId()" + new Date());
+		
+		LoginMemberDto info = service.findId(dto);
+		
+		return info;
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping(value = "/findPwd", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto findPwd(LoginMemberDto dto) {
+		log.info("LoginMemberController findPwd()" + new Date());
+		
+		LoginMemberDto info = service.findPwd(dto);
+		
+		return info;
+	}
+	
 	
 	// 모바일
 	
@@ -107,15 +149,26 @@ public class LoginMemberController {
 	
 	// 회원가입
 	@RequestMapping(value = "/register_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public String register_M(@RequestBody LoginMemberDto dto) {
+	public String register_M(@Valid @RequestBody LoginMemberDto dto, Errors err) {
+//		log.info("LoginMemberController register_M()" + new Date());
+//			
+//		boolean b = service.register(dto);
+//			
+//		if(b) {
+//			return "y";
+//		}
+//		return "n";
+		
 		log.info("LoginMemberController register_M()" + new Date());
-			
-		boolean b = service.register(dto);
-			
-		if(b) {
-			return "y";
+		
+		if(err.hasErrors()) {
+			for(FieldError fe: err.getFieldErrors()) {
+				log.info(fe.getDefaultMessage());
+				return fe.getDefaultMessage();
+				}
 		}
-		return "n";
+		
+		return service.register(dto)?"y":"n";
 	}
 	
 	// 이메일 중복 검사
@@ -129,6 +182,39 @@ public class LoginMemberController {
 			return "n";
 		}
 		return "y";
+	}
+	
+	// 닉네임 중복 검사
+	@RequestMapping(value = "/checkNickname_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public String checkNickname_M(@RequestBody LoginMemberDto dto) {
+		log.info("LoginMemberController checkNickname_M()" + new Date());
+		
+		boolean b = service.checkNickname(dto);
+		
+		if(b) {
+			return "n";
+		}
+		return "y";
+	}
+	
+	// 아이디 찾기
+	@RequestMapping(value = "/findId_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto findId_M(@RequestBody LoginMemberDto dto) {
+		log.info("LoginMemberController findId_M()" + new Date());
+			
+		LoginMemberDto info = service.findId(dto);
+			
+		return info;
+	}
+		
+	// 비밀번호 찾기
+	@RequestMapping(value = "/findPwd_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto findPwd_M(@RequestBody LoginMemberDto dto) {
+		log.info("LoginMemberController findPwd_M()" + new Date());
+			
+		LoginMemberDto info = service.findPwd(dto);
+			
+		return info;
 	}
 	
 	
