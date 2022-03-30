@@ -27,11 +27,12 @@ public class CalendarService {
 		return false;
 	}
 	
-	public boolean deleteCalendar(int calendarseq) {
-		int n = dao.deleteCalendar(calendarseq);
-		if(n == 0) return false;
-		
-		return true;
+	public boolean deleteCalendar(CalendarDto dto) {
+		return dao.deleteCalendar(dto)>0?true:false;
+	}
+	
+	public CalendarDto searchCalendar(CalendarDto dto) {
+		return dao.searchCalendar(dto);
 	}
 	
 	

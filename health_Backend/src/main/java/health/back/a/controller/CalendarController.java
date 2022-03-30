@@ -3,6 +3,7 @@ package health.back.a.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,14 +54,21 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value = "/deleteCalendar", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String deleteCalendar(int calendarseq) {
+	public String deleteCalendar(@RequestBody CalendarDto dto) {
 		System.out.println("CalendarController deleteCalendar " + new Date());
-		
-		boolean b = service.deleteCalendar(calendarseq);
-		if(b) {
+		boolean result = service.deleteCalendar(dto);		
+		if(result) {
 			return "OK";
 		}
-		return "NO";		
+		return "NO";	
+	}
+	//안드로이드에서 @RequestBody 는 객체여서 사용해야됨.
+	@RequestMapping(value = "/searchCalendar", method = {RequestMethod.GET, RequestMethod.POST} )
+	public CalendarDto searchCalendar(@RequestBody CalendarDto dto) {
+		System.out.println("CalendarController searchCalendar " + new Date());
+		
+		return service.searchCalendar(dto);
+		
 	}
 	
 }
