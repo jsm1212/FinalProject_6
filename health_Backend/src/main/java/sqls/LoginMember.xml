@@ -19,7 +19,7 @@
 	
 	<insert id="register" parameterType="health.back.a.dto.LoginMemberDto">
 		INSERT INTO LOGINMEMBERS(ID, PWD, NAME, NICKNAME, GENDER, AGE, EMAIL, TEL, AUTH, REGIDATE, TRAINER)
-		VALUES(#{id}, #{pwd}, #{name}, #{nickname}, #{gender}, #{age}, #{email}, #{tel}, 3, SYSDATE, "")
+		VALUES(#{id}, #{pwd}, #{name}, #{nickname}, #{gender}, #{age}, #{email}, #{tel}, #{auth}, SYSDATE, #{trainer})
 	</insert>
 	
 	<select id="allMember" resultType="health.back.a.dto.LoginMemberDto">
@@ -51,5 +51,6 @@
 		FROM LOGINMEMBERS
 		WHERE ID=#{id} and NAME=#{name} and TEL=#{tel}
 	</select>
+	
 	
   </mapper>
