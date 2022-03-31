@@ -13,16 +13,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 운동 루틴 -->
 	
 	<!-- 내 게시글 목록 -->
-	<select id="getMyBbs" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.WorkBbsDto">
+	<select id="getMyBbs" parameterType="java.lang.String" resultType="health.back.a.dto.WorkBbsDto">
 		SELECT * FROM WORKBBS
-		WHERE ID=#{id}
+		WHERE NICKNAME=#{nickname}
 		ORDER BY WDATE DESC
 	</select>
 	
 	<!-- 내 댓글 목록 -->
-		<select id="getMyReply" parameterType="health.back.a.dto.LoginMemberDto" resultType="health.back.a.dto.WorkBbsDto">
+	<select id="getMyReply" parameterType="java.lang.String" resultType="health.back.a.dto.WorkReplyDto">
 		SELECT * FROM WORKREPLY
-		WHERE ID=#{id}
+		WHERE NICKNAME=#{nickname}
 		ORDER BY WDATE DESC
 	</select>
 	
