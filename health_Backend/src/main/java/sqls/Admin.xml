@@ -5,8 +5,9 @@
 
 <mapper namespace="health.back.a.dao.WorkBbsDao">
 	<!-- 회원 목록 -->
-	<select id="getAdminMem" resultType="health.back.a.dto.LoginMemberDto">
+	<select id="getMem" resultType="health.back.a.dto.LoginMemberDto">
 		SELECT * FROM LOGINMEMBERS
+		WHERE DEL=0
 		ORDER BY ID
 	</select>
 	

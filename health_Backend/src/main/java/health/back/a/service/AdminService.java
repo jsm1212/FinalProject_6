@@ -12,8 +12,8 @@ public class AdminService {
 	AdminDao dao;
 	
 	// 회원 목록
-	public List<LoginMemberDto> getAdminMem(){
-		return dao.getAdminMem();
+	public List<LoginMemberDto> getMem(){
+		return dao.getMem();
 	}
 	
 	// 회원 삭제

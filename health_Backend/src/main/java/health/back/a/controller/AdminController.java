@@ -15,18 +15,18 @@ public class AdminController {
 	AdminService sv;
 	
 	// 회원목록
-	@RequestMapping(value = "/getAdminMem", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<LoginMemberDto> getAdminMem(){
-		System.out.println("MypageController getAdminMem 웹" + new Date());
+	@RequestMapping(value = "/getMem", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<LoginMemberDto> getMem(){
+		System.out.println("MypageController getMem 웹" + new Date());
 		
-		List<LoginMemberDto> list = sv.getAdminMem();
+		List<LoginMemberDto> list = sv.getMem();
 		return list;
 	}
-	@RequestMapping(value = "/getAdminMem_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<LoginMemberDto> getAdminMem_M(){
-		System.out.println("MypageController getAdminMem_M 모바일" + new Date());
+	@RequestMapping(value = "/getMem_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<LoginMemberDto> getMem_M(){
+		System.out.println("MypageController getMem_M 모바일" + new Date());
 		
-		List<LoginMemberDto> list = sv.getAdminMem();
+		List<LoginMemberDto> list = sv.getMem();
 		return list;
 	}
 	
@@ -36,6 +36,7 @@ public class AdminController {
 		System.out.println("MypageController deleteMem 웹" + new Date());
 		
 		boolean b = sv.deleteMem(id);
+		
 		if(b) return "yes";
 		return "no";
 	}
@@ -44,6 +45,7 @@ public class AdminController {
 		System.out.println("MypageController deleteMem_M 모바일" + new Date());
 		
 		boolean b = sv.deleteMem(id);
+		
 		if(b) return "yes";
 		return "no";
 	}

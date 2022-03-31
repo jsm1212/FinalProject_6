@@ -47,49 +47,49 @@ public class MypageController {
 	
 	// 내 게시글 목록
 	@RequestMapping(value = "/getMyBbs", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkBbsDto> getMyBbs(String nick){
+	public List<WorkBbsDto> getMyBbs(String id){
 		System.out.println("MypageController getMyBbs 웹" + new Date());
 		
-		List<WorkBbsDto> list = sv.getMyBbs(nick);
+		List<WorkBbsDto> list = sv.getMyBbs(id);
 		return list;
 	}
 	@RequestMapping(value = "/getMyBbs_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkBbsDto> getMyBbs_M(@RequestBody String nick){
+	public List<WorkBbsDto> getMyBbs_M(@RequestBody String id){
 		System.out.println("MypageController getMyBbs 모바일" + new Date());
 		
-		List<WorkBbsDto> list = sv.getMyBbs(nick);
+		List<WorkBbsDto> list = sv.getMyBbs(id);
 		return list;
 	}
 	
 	// 내 댓글 목록
 	@RequestMapping(value = "/getMyReply", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkReplyDto> getMyReply(String nick){
+	public List<WorkReplyDto> getMyReply(String id){
 		System.out.println("MypageController getMyReply 웹" + new Date());
 		
-		List<WorkReplyDto> list = sv.getMyReply(nick);
+		List<WorkReplyDto> list = sv.getMyReply(id);
 		return list;
 	}
 	@RequestMapping(value = "/getMyReply_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkReplyDto> getMyReply_M(@RequestBody String nick){
+	public List<WorkReplyDto> getMyReply_M(@RequestBody String id){
 		System.out.println("MypageController getMyReply 모바일" + new Date());
 		
-		List<WorkReplyDto> list = sv.getMyReply(nick);
+		List<WorkReplyDto> list = sv.getMyReply(id);
 		return list;
 	}
 	
 	// 좋아요 누른 글 목록
 	@RequestMapping(value = "/getMyLike", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkBbsDto> getMyLike(String nick){
+	public List<WorkBbsDto> getMyLike(String id){
 		System.out.println("MypageController getMyLike 웹" + new Date());
 		
-		List<WorkBbsDto> list = sv.getMyLike(nick);
+		List<WorkBbsDto> list = sv.getMyLike(id);
 		return list;
 	}
 	@RequestMapping(value = "/getMyLike_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkBbsDto> getMyLike_M(@RequestBody String nick){
+	public List<WorkBbsDto> getMyLike_M(@RequestBody String id){
 		System.out.println("MypageController getMyLike 모바일" + new Date());
 		
-		List<WorkBbsDto> list = sv.getMyLike(nick);
+		List<WorkBbsDto> list = sv.getMyLike(id);
 		return list;
 	}
 }

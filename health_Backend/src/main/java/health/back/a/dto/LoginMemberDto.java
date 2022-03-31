@@ -49,15 +49,13 @@ public class LoginMemberDto {
 	
 	private int auth;
 	private String regidate;
-	
 	private String trainer;
+	private int del;
 	
-	public LoginMemberDto() {
-		
-	}
+	public LoginMemberDto() {}
 
 	public LoginMemberDto(String id, String pwd, String name, String nickname, String gender, int age, String email, String tel,
-			int auth, String regidate, String trainer) {
+			int auth, String regidate, String trainer, int del) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -70,6 +68,7 @@ public class LoginMemberDto {
 		this.auth = auth;
 		this.regidate = regidate;
 		this.trainer = trainer;
+		this.del = del;
 	}
 
 	public String getId() {
@@ -160,14 +159,17 @@ public class LoginMemberDto {
 		this.trainer = trainer;
 	}
 
+	public int getDel() {
+		return del;
+	}
+
+	public void setDel(int del) {
+		this.del = del;
+	}
 	@Override
 	public String toString() {
 		return "LoginMemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", nickname=" + nickname + ", gender="
 				+ gender + ", age=" + age + ", email=" + email + ", tel=" + tel + ", auth=" + auth + ", regidate="
-				+ regidate + ", trainer=" + trainer + "]";
+				+ regidate + ", trainer=" + trainer + ", del=" + del + "]";
 	}
-
-	
-	
-	
 }

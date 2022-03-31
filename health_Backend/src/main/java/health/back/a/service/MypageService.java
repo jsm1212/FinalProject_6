@@ -24,22 +24,22 @@ public class MypageService {
 	}
 	
 	// 운동 루틴
-//	public List<> getMyRoutine(String nick){
-//		return dao.getMyRoutine(nick);
+//	public List<> getMyRoutine(String id){
+//		return dao.getMyRoutine(id);
 //	}
 	
 	// 내 게시글 목록
-	public List<WorkBbsDto> getMyBbs(String nick){
-		return dao.getMyBbs(nick);
+	public List<WorkBbsDto> getMyBbs(String id){
+		return dao.getMyBbs(id);
 	}
 	
 	// 내 댓글 목록
-	public List<WorkReplyDto> getMyReply(String nick){
-		return dao.getMyReply(nick);
+	public List<WorkReplyDto> getMyReply(String id){
+		return dao.getMyReply(id);
 	}
 	
 	// 좋아요 누른 글 목록
-	public List<WorkBbsDto> getMyLike(String nick){
-		return dao.getMyLike(nick);
+	public List<WorkBbsDto> getMyLike(String id){
+		return dao.getMyLike(id);
 	}
 }

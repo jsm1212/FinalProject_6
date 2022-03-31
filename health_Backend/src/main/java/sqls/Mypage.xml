@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="health.back.a.dao.MypageDao" >
 	<!-- 회원정보 수정 -->
-	<update id="memberUpdate" parameterType="health.back.a.dto.LoginMemberDto">
+	<update id="updateMember" parameterType="health.back.a.dto.LoginMemberDto">
 		UPDATE LOGINMEMBERS SET NICKNAME=#{nickname}, EMAIL=#{email}, TEL=#{tel}
 		WHERE ID=#{id}
 	</update>
@@ -15,14 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 내 게시글 목록 -->
 	<select id="getMyBbs" parameterType="java.lang.String" resultType="health.back.a.dto.WorkBbsDto">
 		SELECT * FROM WORKBBS
-		WHERE NICKNAME=#{nickname}
+		WHERE ID=#{id} AND DEL=0
 		ORDER BY WDATE DESC
 	</select>
 	
 	<!-- 내 댓글 목록 -->
 	<select id="getMyReply" parameterType="java.lang.String" resultType="health.back.a.dto.WorkReplyDto">
 		SELECT * FROM WORKREPLY
-		WHERE NICKNAME=#{nickname}
+		WHERE ID=#{id} AND DEL=0
 		ORDER BY WDATE DESC
 	</select>
 	
