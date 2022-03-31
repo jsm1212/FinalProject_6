@@ -10,8 +10,6 @@ public class CalendarDto{
 	private String id;
 	private String calendardate;
 	
-
-
 	public CalendarDto() {
 	}
 	

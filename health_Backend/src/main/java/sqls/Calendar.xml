@@ -10,17 +10,26 @@
 	VALUES(CALENDARSEQ_CALENDAR.NEXTVAL,#{title},#{content},SYSDATE,0,#{id},#{calendardate})
 </insert>	
 
-<update id="updateCalendar" parameterType="health.back.a.dao.CalendarDao">
+<update id="updateCalendar" parameterType="health.back.a.dto.CalendarDto">
 	UPDATE CALENDAR
 	SET CONTENT=#{content}
-	WHERE CALENDARDATE=#{calendardate}
+	WHERE CALENDARDATE=#{calendardate} AND ID=#{id}
 </update>
 
 <!-- 딜리트 사용하기 -->	
-<update id="deleteCalendar" parameterType="java.lang.Integer">
-	UPDATE CALENDAR
-	SET DEL=1
-	WHERE CALENDARSEQ=#{calendarseq}
-</update>
+<delete id="deleteCalendar" parameterType="health.back.a.dto.CalendarDto">
+	DELETE 
+	FROM CALENDAR
+	WHERE CALENDARDATE=#{calendardate} AND ID=#{id}
+</delete>
+
+<!-- 검색하기 -->
+<select id="searchCalendar" parameterType="health.back.a.dto.CalendarDto" resultType="health.back.a.dto.CalendarDto">
+<!-- resultType은 원하는값의형태 parameterType은 원하는값의 형태 -->
+	SELECT *
+	FROM CALENDAR
+	WHERE CALENDARDATE=#{calendardate} AND ID=#{id}
+
+</select>
 
   </mapper>
