@@ -150,14 +150,6 @@ public class LoginMemberController {
 	// 회원가입
 	@RequestMapping(value = "/register_M", method = {RequestMethod.GET, RequestMethod.POST})
 	public String register_M(@Valid @RequestBody LoginMemberDto dto, Errors err) {
-//		log.info("LoginMemberController register_M()" + new Date());
-//			
-//		boolean b = service.register(dto);
-//			
-//		if(b) {
-//			return "y";
-//		}
-//		return "n";
 		
 		log.info("LoginMemberController register_M()" + new Date());
 		
