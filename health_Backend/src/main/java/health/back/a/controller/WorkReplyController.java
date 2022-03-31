@@ -30,19 +30,6 @@ public class WorkReplyController {
 		return list;
 	}
 	
-	// 댓글 리스트 불러오기_App
-	@RequestMapping(value = "/getReplyList_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<WorkReplyDto> getReplyList_M(@RequestBody int seq) {
-		// 클라이언트에서 보낸 게시글의 seq 확인
-		System.out.println("게시글의 seq : " + seq);
-		
-		// 클라이언트로 보낼 댓글 리스트 확인
-		List<WorkReplyDto> list = sv.getReplyList(seq);
-		System.out.println("해당 게시물 댓글 리스트 : " + list);
-		
-		return list;
-	}
-	
 	// 댓글 작성하기_Web
 	@RequestMapping(value = "/writeReply", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeReply(WorkReplyDto dto) {

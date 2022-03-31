@@ -19,7 +19,7 @@ CREATE TABLE WORKREPLY(
 );
 */
 public class WorkReplyDto {
-	private int seq;
+	private int workreplyseq;
 	private int replyNum;
 	
 	private String id;
@@ -45,7 +45,7 @@ public class WorkReplyDto {
 	public WorkReplyDto(int seq, int replyNum, String id, String nickname, String title, String content, String wdate,
 			int ref, int step, int depth, int del, int readcount, int replyLike, String replyImage) {
 		super();
-		this.seq = seq;
+		this.workreplyseq = seq;
 		this.replyNum = replyNum;
 		this.id = id;
 		this.nickname = nickname;
@@ -62,11 +62,11 @@ public class WorkReplyDto {
 	}
 
 	public int getSeq() {
-		return seq;
+		return workreplyseq;
 	}
 
 	public void setSeq(int seq) {
-		this.seq = seq;
+		this.workreplyseq = seq;
 	}
 
 	public int getReplyNum() {
@@ -157,28 +157,28 @@ public class WorkReplyDto {
 		this.readcount = readcount;
 	}
 
-	public int getBbsLike() {
+	public int getReplyLike() {
 		return replyLike;
 	}
 
-	public void setBbsLike(int replyLike) {
+	public void setReplyLike(int replyLike) {
 		this.replyLike = replyLike;
 	}
 
-	public String getBbsImage() {
+	public String getReplyImage() {
 		return replyImage;
 	}
 
-	public void setBbsImage(String replyImage) {
+	public void setReplyImage(String replyImage) {
 		this.replyImage = replyImage;
 	}
 
 	@Override
 	public String toString() {
-		return "WorkReplyDto [seq=" + seq + ", replyNum=" + replyNum + ", id=" + id + ", nickname=" + nickname
+		return "WorkReplyDto [seq=" + workreplyseq + ", replyNum=" + replyNum + ", id=" + id + ", nickname=" + nickname
 				+ ", title=" + title + ", content=" + content + ", wdate=" + wdate + ", ref=" + ref + ", step=" + step
-				+ ", depth=" + depth + ", del=" + del + ", readcount=" + readcount + ", bbsLike=" + replyLike
-				+ ", bbsImage=" + replyImage + "]";
+				+ ", depth=" + depth + ", del=" + del + ", readcount=" + readcount + ", ReplyLike=" + replyLike
+				+ ", ReplyImage=" + replyImage + "]";
 	}
 	
 }

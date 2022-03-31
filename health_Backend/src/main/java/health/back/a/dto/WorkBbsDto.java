@@ -26,7 +26,7 @@ REFERENCES LOGINMEMBERS(ID);
 */
 
 public class WorkBbsDto {
-	private int seq;
+	private int workbbsseq;
 	private String id;	
 	private String nickname;
 	
@@ -50,7 +50,7 @@ public class WorkBbsDto {
 	public WorkBbsDto(int seq, String id, String nickname, String title, String content, String wdate, int ref,
 			int step, int depth, int del, int readcount, int bbsLike, String bbsImage) {
 		super();
-		this.seq = seq;
+		this.workbbsseq = seq;
 		this.id = id;
 		this.nickname = nickname;
 		this.title = title;
@@ -66,11 +66,11 @@ public class WorkBbsDto {
 	}
 
 	public int getSeq() {
-		return seq;
+		return workbbsseq;
 	}
 
 	public void setSeq(int seq) {
-		this.seq = seq;
+		this.workbbsseq = seq;
 	}
 
 	public String getId() {
@@ -171,7 +171,7 @@ public class WorkBbsDto {
 
 	@Override
 	public String toString() {
-		return "WorkBbsDto [seq=" + seq + ", id=" + id + ", nickname=" + nickname + ", title=" + title + ", content="
+		return "WorkBbsDto [seq=" + workbbsseq + ", id=" + id + ", nickname=" + nickname + ", title=" + title + ", content="
 				+ content + ", wdate=" + wdate + ", ref=" + ref + ", step=" + step + ", depth=" + depth + ", del=" + del
 				+ ", readcount=" + readcount + ", bbsLike=" + bbsLike + ", bbsImage=" + bbsImage + "]";
 	}

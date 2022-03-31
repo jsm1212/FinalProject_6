@@ -50,6 +50,16 @@ public class WorkBbsService {
 		dao.readcount(seq);
 	}
 	
+	// 게시판 글 좋아요
+	public void likeCount(int seq) {
+		dao.likeCount(seq);
+	}
+	
+	// 게시판 글 좋아요 취소
+	public void likeCountCancel(int seq) {
+		dao.likeCountCancel(seq);
+	}
+	
 	// 게시판 검색기능
 	public List<WorkBbsDto> getBbsListSearch(WorkBbsParam param) {
 		return dao.getBbsListSearch(param);

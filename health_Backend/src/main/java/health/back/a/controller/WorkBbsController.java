@@ -61,36 +61,41 @@ public class WorkBbsController {
 		return "fail";
 	}
 	
-	// 선택한 게시글 불러오기_Web
+	// 선택한 게시글 불러오기
 	@RequestMapping(value = "/bbsDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public WorkBbsDto bbsDetail(int seq) {
+	public WorkBbsDto bbsDetail(int seq, String id) {
 		// 클라이언트에서 받은 seq번호 확인
 		System.out.println("받은 seq번호 : " + seq);
-		
-		// 디테일 누를때마다 조회수 1씩 증가
-		sv.readcount(seq);
+		System.out.println("받은 ID값 : " + id);
 		
 		// 클라이언트로 보내줄 데이터 확인
 		WorkBbsDto dto = sv.bbsDetail(seq);
 		System.out.println("클라이언트로 보낼 데이터 : " + dto);
+
+		// 디테일 누를때마다 조회수 1씩 증가
+		if(dto.getId() != id) {
+			sv.readcount(seq);
+		}
 		
 		return dto;
 	}
 	
-	// 선택한 게시글 불러오기_App
-	@RequestMapping(value = "/bbsDetail_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public WorkBbsDto bbsDetail_M(@RequestBody int seq) {
+	// 게시글 좋아요 기능
+	@RequestMapping(value = "/likeCount", method = {RequestMethod.GET, RequestMethod.POST})
+	public void likeCount(int seq) {
 		// 클라이언트에서 받은 seq번호 확인
-		System.out.println("받은 seq번호 : " + seq);
+		System.out.println("받은 seq번호(게시글 좋아요) : " + seq);
 		
-		// 디테일 누를때마다 조회수 1씩 증가
-		sv.readcount(seq);
+		sv.likeCount(seq);
+	}
+	
+	// 게시글 좋아요 취소기능
+	@RequestMapping(value = "/likeCountCancel", method = {RequestMethod.GET, RequestMethod.POST})
+	public void likeCountCancel(int seq) {
+		// 클라이언트에서 받은 seq번호 확인
+		System.out.println("받은 seq번호(좋아요 취소) : " + seq);
 		
-		// 클라이언트로 보내줄 데이터 확인
-		WorkBbsDto dto = sv.bbsDetail(seq);
-		System.out.println("클라이언트로 보낼 데이터 : " + dto);
-		
-		return dto;
+		sv.likeCountCancel(seq);
 	}
 	
 	// 게시판 글 수정_Web
@@ -126,21 +131,6 @@ public class WorkBbsController {
 	// 게시판 글 삭제_Web
 	@RequestMapping(value = "/deleteBbs", method = {RequestMethod.GET, RequestMethod.POST})
 	public String deleteBbs(int seq) {
-		// 클라이언트에서 받은 게시글 seq
-		System.out.println("삭제될 게시글 seq : " + seq);
-		
-		boolean b = sv.deleteBbs(seq);
-		if(b) {
-			// 삭제 성공
-			return "success";
-		}
-		//삭제 실패
-		return "fail";
-	}
-	
-	// 게시판 글 삭제_App
-	@RequestMapping(value = "/deleteBbs_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public String deleteBbs_M(@RequestBody int seq) {
 		// 클라이언트에서 받은 게시글 seq
 		System.out.println("삭제될 게시글 seq : " + seq);
 		

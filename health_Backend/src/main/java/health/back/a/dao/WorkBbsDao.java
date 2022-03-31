@@ -30,6 +30,12 @@ public interface WorkBbsDao {
 	// 게시판 글 조회수
 	public void readcount(int seq);
 	
+	// 게시판 글 좋아요
+	public void likeCount(int seq);
+	
+	// 게시판 글 좋아요 취소
+	public void likeCountCancel(int seq);
+	
 	// 게시판 검색기능
 	public List<WorkBbsDto> getBbsListSearch(WorkBbsParam param);
 	
