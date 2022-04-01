@@ -73,7 +73,8 @@ public class WorkBbsController {
 		System.out.println("클라이언트로 보낼 데이터 : " + dto);
 
 		// 디테일 누를때마다 조회수 1씩 증가
-		if(dto.getId() != id) {
+		if(!dto.getId().equals(id)) {
+			System.out.println("조회수증가 실행");
 			sv.readcount(seq);
 		}
 		

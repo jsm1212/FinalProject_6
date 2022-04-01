@@ -69,7 +69,7 @@
 	<!-- 게시판 검색기능 -->
 	<select id="getBbsListSearch" parameterType="health.back.a.dto.WorkBbsParam" resultType="health.back.a.dto.WorkBbsDto">
 		SELECT * FROM WORKBBS
-		WHERE 1=1
+		WHERE DEL != 1
 			<if test="choice != null and choice != '' and search != null and search != '' ">
 				<if test="choice == 'title'">
 					 AND TITLE LIKE '%'||#{search}||'%'
@@ -78,7 +78,7 @@
 					 AND CONTENT LIKE '%'||#{search}||'%'
 				</if>
 				<if test="choice == 'writer'">
-					 AND ID=#{search}
+					 AND NICKNAME LIKE '%'||#{search}||'%'
 				</if>
 			</if> 
 		ORDER BY REF DESC, STEP ASC
@@ -86,12 +86,12 @@
 	
 	<!-- 게시판 페이징 기능 -->
 	<select id="getBbsListSearchPage" parameterType="health.back.a.dto.WorkBbsParam" resultType="health.back.a.dto.WorkBbsDto">					
-		SELECT *
+		SELECT WORKBBSSEQ, ID, NICKNAME, TITLE, CONTENT, REF, STEP, DEPTH, DEL, WDATE, READCOUNT, BBSLIKE, BBSIMAGE
 		FROM
-			(SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM, 
-				*
+			(SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM,
+				WORKBBSSEQ, ID, NICKNAME, TITLE, CONTENT, REF, STEP, DEPTH, DEL, WDATE, READCOUNT, BBSLIKE, BBSIMAGE
 			FROM WORKBBS
-			WHERE 1=1
+			WHERE DEL != 1
 				<if test="choice != null and choice != '' and search != null and search != '' ">
 					<if test="choice == 'title'">
 						 AND TITLE LIKE '%'||#{search}||'%'

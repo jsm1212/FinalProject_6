@@ -8,7 +8,7 @@
  	<!-- 댓글 리스트 불러오기 -->
  	<select id="getReplyList" parameterType="java.lang.Integer" resultType="health.back.a.dto.WorkReplyDto">
  		SELECT * FROM WORKREPLY
- 		WHERE REPLYNUM=#{seq}
+ 		WHERE REPLYNUM=#{seq} AND DEL != 1
  		ORDER BY WDATE ASC
  	</select>
  	
