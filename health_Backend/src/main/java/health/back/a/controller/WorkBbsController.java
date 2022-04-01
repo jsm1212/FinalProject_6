@@ -61,7 +61,7 @@ public class WorkBbsController {
 		return "fail";
 	}
 	
-	// 선택한 게시글 불러오기
+	// 선택한 게시글 불러오기_조회수증가(Item선택시)
 	@RequestMapping(value = "/bbsDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public WorkBbsDto bbsDetail(int seq, String id) {
 		// 클라이언트에서 받은 seq번호 확인
@@ -76,6 +76,20 @@ public class WorkBbsController {
 		if(dto.getId() != id) {
 			sv.readcount(seq);
 		}
+		
+		return dto;
+	}
+	
+	// 선택한 게시글 불러오기_조회수 X
+	@RequestMapping(value = "/bbsDetail_non", method = {RequestMethod.GET, RequestMethod.POST})
+	public WorkBbsDto bbsDetail_non(int seq, String id) {
+		// 클라이언트에서 받은 seq번호 확인
+		System.out.println("받은 seq번호 : " + seq);
+		System.out.println("받은 ID값 : " + id);
+		
+		// 클라이언트로 보내줄 데이터 확인
+		WorkBbsDto dto = sv.bbsDetail(seq);
+		System.out.println("클라이언트로 보낼 데이터 : " + dto);
 		
 		return dto;
 	}
