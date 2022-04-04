@@ -32,4 +32,13 @@
 
 </select>
 
+<!-- 기간검색 -->
+<select id="psearchCalendar" parameterType="java.lang.String" resultType="health.back.a.dto.CalendarDto">
+	SELECT * FROM CALENDAR
+	WHERE ID = #{id} 
+	ORDER BY CALENDARDATE ASC 
+	<!-- CALENDARDATE >= #{startDate} AND #{endDate} >= CALENDARDATE -->
+
+</select>
+
   </mapper>

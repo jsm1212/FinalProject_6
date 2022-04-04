@@ -1,6 +1,8 @@
 package health.back.a.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -69,6 +71,25 @@ public class CalendarController {
 		
 		return service.searchCalendar(dto);
 		
+	}
+	
+	// 기간검색
+	@RequestMapping(value = "/psearchCalendar", method = {RequestMethod.GET, RequestMethod.POST} )
+	public List<CalendarDto> psearchCalendar(int startDate, int endDate, String userId){
+		System.out.println("시작기간 : " + startDate);
+		System.out.println("종료기간 : " + endDate);
+		
+		List<CalendarDto> list = service.psearchCalendar(userId);
+		List<CalendarDto> calList = new ArrayList<CalendarDto>();
+		
+		for(int i = 0; i <list.size(); i++) {
+			if(Integer.parseInt(list.get(i).getCalendardate()) >= startDate && Integer.parseInt(list.get(i).getCalendardate()) <= endDate) {
+				calList.add(list.get(i));
+			}
+		}
+		System.out.println(calList);
+		
+		return calList;
 	}
 	
 }
