@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import health.back.a.dao.WorkBbsDao;
+import health.back.a.dto.LikeBbsDto;
+import health.back.a.dto.ReadCountBbsDto;
 import health.back.a.dto.WorkBbsDto;
 import health.back.a.dto.WorkBbsParam;
 
@@ -45,19 +47,44 @@ public class WorkBbsService {
 		return n>0?true:false;
 	}
 	
+	// 동일 게시판 조회수 여부 확인
+	public boolean checkReadCount(ReadCountBbsDto dto) {
+		int n = dao.checkReadCount(dto);
+		return n>0?true:false;
+	}
+	
 	// 게시판 글 조회수
 	public void readcount(int seq) {
 		dao.readcount(seq);
+	}
+	public boolean readCountInfo(ReadCountBbsDto dto) {
+		int n = dao.readCountInfo(dto);
+		return n>0?true:false;
+	}
+	
+	// 동일 게시글 좋아요 여부 확인
+	public boolean checkLikeCount(LikeBbsDto dto) {
+		int n = dao.checkLikeCount(dto);
+		return n>0?true:false;
 	}
 	
 	// 게시판 글 좋아요
 	public void likeCount(int seq) {
 		dao.likeCount(seq);
 	}
+	public boolean likeInfo(LikeBbsDto dto) {
+		int n = dao.likeInfo(dto);
+		return n>0?true:false;
+	}
 	
 	// 게시판 글 좋아요 취소
 	public void likeCountCancel(int seq) {
 		dao.likeCountCancel(seq);
+	}
+	
+	public boolean likeCancel(LikeBbsDto dto) {
+		int n = dao.likeCancel(dto);
+		return n>0?true:false;
 	}
 	
 	// 게시판 검색기능

@@ -52,6 +52,24 @@
 		WHERE WORKBBSSEQ=#{seq}
 	</update>
 	
+	<!-- 동일 게시글 조회 여부 확인 -->
+	<select id="checkReadCount" parameterType="health.back.a.dto.ReadCountBbsDto" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM READCOUNTBBS
+		WHERE BBS_SEQ = #{bbs_seq} AND USER_ID = #{user_id}
+	</select>
+	
+	<!-- 게시글 조회시 유저id와 게시글 seq번호 저장 -->
+	<insert id="readCountInfo" parameterType="health.back.a.dto.ReadCountBbsDto">
+	 INSERT INTO READCOUNTBBS(BBS_SEQ, USER_ID)
+	 VALUES(#{bbs_seq}, #{user_id}) 
+	</insert>
+	
+	<!-- 동일 게시글 좋아요 여부 확인 -->
+	<select id="checkLikeCount" parameterType="health.back.a.dto.LikeBbsDto" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM LIKEBBS
+		WHERE BBS_NO = #{bbs_no} AND USER_ID = #{user_id}
+	</select>
+	
 	<!-- 게시판 좋아요 기능 -->
 	<update id="likeCount" parameterType="java.lang.Integer">
 		UPDATE WORKBBS
@@ -59,12 +77,22 @@
 		WHERE WORKBBSSEQ=#{seq}
 	</update>
 	
+	<insert id="likeInfo" parameterType="health.back.a.dto.LikeBbsDto">
+		INSERT INTO LIKEBBS(BBS_NO, USER_ID)
+		VALUES(#{bbs_no}, #{user_id})
+	</insert>
+	
 	<!-- 게시판 좋아요 취소기능 -->
 	<update id="likeCountCancel" parameterType="java.lang.Integer">
 		UPDATE WORKBBS
 		SET BBSLIKE=BBSLIKE-1
 		WHERE WORKBBSSEQ=#{seq}
 	</update>
+	
+	<delete id="likeCancel" parameterType="health.back.a.dto.LikeBbsDto">
+		DELETE FROM LIKEBBS
+		WHERE BBS_NO = #{bbs_no} AND USER_ID = #{user_id}
+	</delete>
 	
 	<!-- 게시판 검색기능 -->
 	<select id="getBbsListSearch" parameterType="health.back.a.dto.WorkBbsParam" resultType="health.back.a.dto.WorkBbsDto">
