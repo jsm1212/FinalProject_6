@@ -63,124 +63,89 @@ public class WorkBbsController {
 		return "fail";
 	}
 	
-	// 선택한 게시글 불러오기_조회수증가(Item선택시)
-//	@RequestMapping(value = "/bbsDetail", method = {RequestMethod.GET, RequestMethod.POST})
-//	public WorkBbsDto bbsDetail(int seq, String id) {
-//		// 클라이언트에서 받은 seq번호 확인
-//		System.out.println("받은 seq번호 : " + seq);
-//		System.out.println("받은 ID값 : " + id);
-//		
-//		// 클라이언트로 보내줄 데이터 확인
-//		WorkBbsDto dto = sv.bbsDetail(seq);
-//		System.out.println("클라이언트로 보낼 데이터 : " + dto);
-//
-//		// 디테일 누를때마다 조회수 1씩 증가
-//		if(!dto.getId().equals(id)) {
-//			
-//			System.out.println("조회수증가 실행");
-//			sv.readcount(seq);
-//		}
-//		
-//		return dto;
-//	}
-	
 	// 선택한 게시글 불러오기_Web
-		@RequestMapping(value = "/bbsDetail", method = {RequestMethod.GET, RequestMethod.POST})
-		public WorkBbsDto bbsDetail(ReadCountBbsDto dto) {
-			// 클라이언트에서 받은 seq번호 확인
-			System.out.println("받은 seq번호(조회수 테스트) : " + dto.getBbs_seq());
-			System.out.println("받은 ID값(조회수 테스트) : " + dto.getUser_id());
-			
-			// 게시글 seq번호
-			int seq = dto.getBbs_seq();
-			// 로그인 유저 id
-			String id = dto.getUser_id();
-			
-			WorkBbsDto bbs = sv.bbsDetail(seq);
-			
-			boolean b = sv.checkReadCount(dto);
-			System.out.println("현재 b의값 : " + b);
+	@RequestMapping(value = "/bbsDetail", method = {RequestMethod.GET, RequestMethod.POST})
+	public WorkBbsDto bbsDetail(ReadCountBbsDto dto) {
+		// 클라이언트에서 받은 seq번호 확인
+		System.out.println("받은 seq번호(조회수 테스트) : " + dto.getBbs_seq());
+		System.out.println("받은 ID값(조회수 테스트) : " + dto.getUser_id());
+		
+		// 게시글 seq번호
+		int seq = dto.getBbs_seq();
+		// 로그인 유저 id
+		String id = dto.getUser_id();
+		
+		WorkBbsDto bbs = sv.bbsDetail(seq);
+		
+		boolean b = sv.checkReadCount(dto);
+		System.out.println("현재 b의값 : " + b);
 
-			// 디테일 누를때마다 조회수 1씩 증가
-			if(!bbs.getId().equals(id)) { // 게시글 id와 로그인유저 id가 다를경우
-				if(b) {
-					System.out.println("게시물 반복한적 있음");
-				}else { // 해당 게시물 첫 조회시 실행
-					System.out.println("조회수증가 실행");
-					// 조회수 테이블에 유저정보 및 게시글seq번호 저장
-					boolean r = sv.readCountInfo(dto);
-					
-					if(r) { // 조회수 테이블에 저장 성공시
-						System.out.println("조회수 테이블 저장 성공 및 조회수 1증가 실행(최종)");
-						sv.readcount(seq);
-					}else {
-						System.out.println("모종의 이유로 조회수테이블 저장 실패");
-					}
+		// 디테일 누를때마다 조회수 1씩 증가
+		if(!bbs.getId().equals(id)) { // 게시글 id와 로그인유저 id가 다를경우
+			if(b) {
+				System.out.println("게시물 반복한적 있음");
+			}else { // 해당 게시물 첫 조회시 실행
+				System.out.println("조회수증가 실행");
+				// 조회수 테이블에 유저정보 및 게시글seq번호 저장
+				boolean r = sv.readCountInfo(dto);
+				
+				if(r) { // 조회수 테이블에 저장 성공시
+					System.out.println("조회수 테이블 저장 성공 및 조회수 1증가 실행(최종)");
+					sv.readcount(seq);
+				}else {
+					System.out.println("모종의 이유로 조회수테이블 저장 실패");
 				}
 			}
-			
-			// 클라이언트로 보내줄 데이터 확인
-			bbs = sv.bbsDetail(seq);
-			System.out.println("클라이언트로 보낼 게시글 데이터 : " + bbs);
-			
-			return bbs;
 		}
 		
-		// 선택한 게시글 불러오기_App
-				@RequestMapping(value = "/bbsDetail_M", method = {RequestMethod.GET, RequestMethod.POST})
-				public WorkBbsDto bbsDetail_M(@RequestBody ReadCountBbsDto dto) {
-					// 클라이언트에서 받은 seq번호 확인
-					System.out.println("받은 seq번호(조회수 테스트) : " + dto.getBbs_seq());
-					System.out.println("받은 ID값(조회수 테스트) : " + dto.getUser_id());
-					
-					// 게시글 seq번호
-					int seq = dto.getBbs_seq();
-					// 로그인 유저 id
-					String id = dto.getUser_id();
-					
-					WorkBbsDto bbs = sv.bbsDetail(seq);
-					
-					boolean b = sv.checkReadCount(dto);
-					System.out.println("현재 b의값 : " + b);
+		// 클라이언트로 보내줄 데이터 확인
+		bbs = sv.bbsDetail(seq);
+		System.out.println("클라이언트로 보낼 게시글 데이터 : " + bbs);
+		
+		return bbs;
+	}
+		
+	// 선택한 게시글 불러오기_App
+	@RequestMapping(value = "/bbsDetail_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public WorkBbsDto bbsDetail_M(@RequestBody ReadCountBbsDto dto) {
+		// 클라이언트에서 받은 seq번호 확인
+		System.out.println("받은 seq번호(조회수 테스트) : " + dto.getBbs_seq());
+		System.out.println("받은 ID값(조회수 테스트) : " + dto.getUser_id());
+		
+		// 게시글 seq번호
+		int seq = dto.getBbs_seq();
+		// 로그인 유저 id
+		String id = dto.getUser_id();
+		
+		WorkBbsDto bbs = sv.bbsDetail(seq);
+		
+		boolean b = sv.checkReadCount(dto);
+		System.out.println("현재 b의값 : " + b);
 
-					// 디테일 누를때마다 조회수 1씩 증가
-					if(!bbs.getId().equals(id)) { // 게시글 id와 로그인유저 id가 다를경우
-						if(b) {
-							System.out.println("게시물 반복한적 있음");
-						}else { // 해당 게시물 첫 조회시 실행
-							System.out.println("조회수증가 실행");
-							// 조회수 테이블에 유저정보 및 게시글seq번호 저장
-							boolean r = sv.readCountInfo(dto);
-							
-							if(r) { // 조회수 테이블에 저장 성공시
-								System.out.println("조회수 테이블 저장 성공 및 조회수 1증가 실행(최종)");
-								sv.readcount(seq);
-							}else {
-								System.out.println("모종의 이유로 조회수테이블 저장 실패");
-							}
-						}
-					}
-					
-					// 클라이언트로 보내줄 데이터 확인
-					bbs = sv.bbsDetail(seq);
-					System.out.println("클라이언트로 보낼 게시글 데이터 : " + bbs);
-					
-					return bbs;
+		// 디테일 누를때마다 조회수 1씩 증가
+		if(!bbs.getId().equals(id)) { // 게시글 id와 로그인유저 id가 다를경우
+			if(b) {
+				System.out.println("게시물 반복한적 있음");
+			}else { // 해당 게시물 첫 조회시 실행
+				System.out.println("조회수증가 실행");
+				// 조회수 테이블에 유저정보 및 게시글seq번호 저장
+				boolean r = sv.readCountInfo(dto);
+				
+				if(r) { // 조회수 테이블에 저장 성공시
+					System.out.println("조회수 테이블 저장 성공 및 조회수 1증가 실행(최종)");
+					sv.readcount(seq);
+				}else {
+					System.out.println("모종의 이유로 조회수테이블 저장 실패");
 				}
-	
-	// 선택한 게시글 불러오기_조회수 X
-//	@RequestMapping(value = "/bbsDetail_non", method = {RequestMethod.GET, RequestMethod.POST})
-//	public WorkBbsDto bbsDetail_non(int seq, String id) {
-//		// 클라이언트에서 받은 seq번호 확인
-//		System.out.println("받은 seq번호 : " + seq);
-//		System.out.println("받은 ID값 : " + id);
-//		
-//		// 클라이언트로 보내줄 데이터 확인
-//		WorkBbsDto dto = sv.bbsDetail(seq);
-//		System.out.println("클라이언트로 보낼 데이터 : " + dto);
-//		
-//		return dto;
-//	}
+			}
+		}
+		
+		// 클라이언트로 보내줄 데이터 확인
+		bbs = sv.bbsDetail(seq);
+		System.out.println("클라이언트로 보낼 게시글 데이터 : " + bbs);
+		
+		return bbs;
+	}
 	
 	// 게시글 좋아요 기능
 	@RequestMapping(value = "/likeCount", method = {RequestMethod.GET, RequestMethod.POST})
