@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import health.back.a.dto.LoginMemberDto;
 import health.back.a.dto.WorkBbsDto;
 import health.back.a.dto.WorkReplyDto;
@@ -19,6 +21,26 @@ public class MypageController {
 	@Autowired
 	MypageService sv;
 	
+	// 회원정보 호출
+	@RequestMapping(value = "/getInformation", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto getInformation(String id) {
+		System.out.println("MypageController getInformation 웹" + new Date());
+
+		LoginMemberDto dto = sv.getInformation(id);
+		System.out.println("dto 확인" + dto);
+		
+		return dto;
+	}
+	@RequestMapping(value = "/getInformation_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginMemberDto getInformation_M(@RequestBody String id) {
+		System.out.println("MypageController getInformation 모바일" + new Date());
+
+		LoginMemberDto dto = sv.getInformation(id);
+		System.out.println("dto 확인" + dto);
+		
+		return dto;
+	}
+	
 	// 회원정보 수정
 	@RequestMapping(value = "/updateMember", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updateMember(LoginMemberDto dto) {
@@ -28,7 +50,6 @@ public class MypageController {
 	    if(b) {
 	    	return "yes";
 	    }
-		
 	    return "no";
 	}
 	@RequestMapping(value = "/updateMember_M", method = {RequestMethod.GET, RequestMethod.POST})
@@ -39,11 +60,70 @@ public class MypageController {
 	    if(b) {
 	    	return "yes";
 	    }
+	    return "no";
+	}
+	
+	// 비밀번호 수정
+	@RequestMapping(value = "/updatePwd", method = {RequestMethod.GET, RequestMethod.POST})
+	public String updatePwd(LoginMemberDto dto) {
+		System.out.println("MypageController updatePwd 웹" + new Date());
+
+	    boolean b = sv.updatePwd(dto);
+	    if(b) {
+	    	return "yes";
+	    }
+	    return "no";
+	}
+	@RequestMapping(value = "/updatePwd_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public String updatePwd_M(@RequestBody LoginMemberDto dto) {
+		System.out.println("MypageController updatePwd 모바일" + new Date());
+
+	    boolean b = sv.updatePwd(dto);
+	    if(b) {
+	    	return "yes";
+	    }
+	    return "no";
+	}
+	
+	// 회원 삭제
+	@RequestMapping(value = "/deleteMember", method = {RequestMethod.GET, RequestMethod.POST})
+	public String deleteMember(String id){
+		System.out.println("MypageController deleteMember 웹" + new Date());
 		
+		boolean b = sv.deleteMember(id);
+		
+		if(b) {
+	    	return "yes";
+	    }
+	    return "no";
+	}
+	@RequestMapping(value = "/deleteMember_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public String deleteMember_M(@RequestBody String id){
+		System.out.println("MypageController deleteMember 모바일" + new Date());
+		
+		boolean b = sv.deleteMember(id);
+		
+		if(b) {
+	    	return "yes";
+	    }
 	    return "no";
 	}
 	
 	// 운동 루틴
+//	@RequestMapping(value = "/getMyRoutine", method = {RequestMethod.GET, RequestMethod.POST})
+//	public List<> getMyRoutine(String id){
+//		System.out.println("MypageController getgetMyRoutineMyBbs 웹" + new Date());
+//		
+//		List<> list = sv.getMyRoutine(id);
+//		return list;
+//	}
+//	@RequestMapping(value = "/getMyRoutine_M", method = {RequestMethod.GET, RequestMethod.POST})
+//	public List<> getMyRoutine_M(String id){
+//		System.out.println("MypageController getgetMyRoutineMyBbs 모바일" + new Date());
+//		
+//		List<> list = sv.getMyRoutine(id);
+//		return list;
+//	}
 	
 	// 내 게시글 목록
 	@RequestMapping(value = "/getMyBbs", method = {RequestMethod.GET, RequestMethod.POST})
@@ -90,6 +170,22 @@ public class MypageController {
 		System.out.println("MypageController getMyLike 모바일" + new Date());
 		
 		List<WorkBbsDto> list = sv.getMyLike(id);
+		return list;
+	}
+	
+	// 회원 목록 조회(관리자)
+	@RequestMapping(value = "/getMemberList", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<LoginMemberDto> getMemberList(){
+		System.out.println("MypageController getMemberList 웹" + new Date());
+		
+		List<LoginMemberDto> list = sv.getMemberList();
+		return list;
+	}
+	@RequestMapping(value = "/getMemberList_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<LoginMemberDto> getMemberList_M(){
+		System.out.println("MypageController getMemberList 모바일" + new Date());
+		
+		List<LoginMemberDto> list = sv.getMemberList();
 		return list;
 	}
 }
