@@ -1,5 +1,7 @@
 package health.back.a.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,10 @@ public class CalendarService {
 	
 	public CalendarDto searchCalendar(CalendarDto dto) {
 		return dao.searchCalendar(dto);
+	}
+	
+	public List<CalendarDto> psearchCalendar(String id){
+		return dao.psearchCalendar(id);
 	}
 	
 	
