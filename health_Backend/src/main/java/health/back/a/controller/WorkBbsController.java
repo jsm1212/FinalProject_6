@@ -211,12 +211,15 @@ public class WorkBbsController {
 		System.out.println("수정된 게시글 정보 : " + dto);
 		
 		boolean b = sv.updateBbs(dto);
+		System.out.println("b의 값 : " + b);
 		if(b) {
 			// 수정 완료
 			return "success";
+		}else {
+			// 수정 실패
+			return "fail";
 		}
-		// 수정 실패
-		return "fail";
+		
 	}
 	
 	// 게시판 글 수정_App
@@ -226,12 +229,14 @@ public class WorkBbsController {
 		System.out.println("수정된 게시글 정보 : " + dto);
 		
 		boolean b = sv.updateBbs(dto);
+		
 		if(b) {
 			// 수정 완료
 			return "success";
+		}else {
+			// 수정 실패
+			return "fail";
 		}
-		// 수정 실패
-		return "fail";
 	}
 	
 	// 게시판 글 삭제
