@@ -36,13 +36,17 @@ public class CalendarController {
 	public String writeCalendar(CalendarDto dto) {
 		//System.out.println("CalendarController writeCalendar " + new Date());
 		//System.out.println(dto.toString());
-
-		boolean b = service.writeCalendar(dto);
-		if(b) {
-			return "YES";
+		boolean b;
+		if(dto.getContent() != null && dto.getContent() != "") {
+			 b = service.writeCalendar(dto);
+		}else {
+			 b = false;
+			}
+				if(b) {
+				return "YES";
+				}
+				return "NO";
 		}
-		return "NO";
-}
 	@RequestMapping(value = "/updateCalendar_M", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String updateCalendar_M(@RequestBody CalendarDto dto) {
 		System.out.println("CalendarController updateCalendar_M " + new Date());
@@ -56,8 +60,12 @@ public class CalendarController {
 	@RequestMapping(value = "/updateCalendar", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String updateCalendar(CalendarDto dto) {
 		System.out.println("CalendarController updateCalendar " + new Date());
-		
-		boolean b = service.updateCalendar(dto);
+		boolean b;
+		if(dto.getContent() != null && dto.getContent() != "") {
+			b = service.updateCalendar(dto);
+		}else {
+			b= false;
+		}
 		if(b) {
 			return "OK";
 		}
