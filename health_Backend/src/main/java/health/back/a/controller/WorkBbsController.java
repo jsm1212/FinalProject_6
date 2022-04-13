@@ -14,12 +14,16 @@ import health.back.a.dto.ReadCountBbsDto;
 import health.back.a.dto.WorkBbsDto;
 import health.back.a.dto.WorkBbsParam;
 import health.back.a.service.WorkBbsService;
+import health.back.a.service.WorkReplyService;
 
 @RestController
 public class WorkBbsController {
 	
 	@Autowired
 	WorkBbsService sv;
+	
+	@Autowired
+	WorkReplyService rsv;
 	
 	// 게시판 전체리스트 불러오기
 	@RequestMapping(value = "/getBbsList", method = {RequestMethod.GET, RequestMethod.POST})
@@ -247,6 +251,7 @@ public class WorkBbsController {
 		
 		boolean b = sv.deleteBbs(seq);
 		if(b) {
+			rsv.deleteReply(seq);
 			// 삭제 성공
 			return "success";
 		}

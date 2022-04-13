@@ -15,23 +15,20 @@ import java.util.Properties;
 public class Mailer {
 	private static final Logger LOG = LoggerFactory.getLogger(Mailer.class);
 
-	@Bean("email_check")
-	public Mailer create() {
-		return this;
-	}
+//	@Bean("email_check")
+//	public Mailer create() {
+//		return this;
+//	}
 
-	String user = "";	// 보내는 이메일
+	String mailId = "";	// 보내는 이메일
 	String password = "";	// 보내는 이메일 비밀번호
 
 	public int SendMail(String email, String title, String content) {
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-		Date time = new Date();
-
-		String time1 = format1.format(time);
-
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time = fm.format(new Date());
+		
 		LOG.info("Mailer - email : " + email);
-		LOG.info("Mailer - time : " + time1);
+		LOG.info("Mailer - time : " + time);
 
 		String host = "smtp.naver.com"; // smtp.사이트 주소
 
@@ -44,12 +41,12 @@ public class Mailer {
 		try {
 			Session session = Session.getDefaultInstance(props, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(user, password);
+					return new PasswordAuthentication(mailId, password);
 				}
 			});
 			MimeMessage message = new MimeMessage(session);
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			message.setFrom(new InternetAddress(user));
+			message.setFrom(new InternetAddress(mailId));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			message.setSubject(MimeUtility.encodeText(title, "UTF-8", "B")); // 메일 제목
 			message.setContent(content, "text/html; charset=UTF-8"); // 메일 내용
