@@ -38,6 +38,11 @@ public class WorkReplyService {
 		int n = dao.deleteReply(seq);
 		return n>0?true:false;
 	}
+	
+	// 해당 게시글의 댓글 수
+	public int getReplyCount(int seq) {
+		return dao.getReplyCount(seq);
+	}
 }
 
 
