@@ -119,6 +119,17 @@ public class WorkReplyController {
 		// 댓글 삭제 실패
 		return "fail";
 	}
+	
+	// 해당 게시글의 댓글 수
+	@RequestMapping(value = "/getReplyCount", method = {RequestMethod.GET, RequestMethod.POST})
+	public int getReplyCount(int seq) {
+		// 클라이언트에서 보낸 삭제할 게시글의 seq
+		System.out.println("해당 게시글의 seq번호 : " + seq);
+		
+		int count = sv.getReplyCount(seq);
+		
+		return count;
+	}
 }
 
 

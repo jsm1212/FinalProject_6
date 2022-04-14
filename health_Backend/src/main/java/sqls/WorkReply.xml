@@ -37,6 +37,12 @@
  		SET DEL=1
  		WHERE WORKREPLYSEQ=#{seq}
  	</update>
+ 	
+ 	<!-- 해당 게시글의 댓글의 총 수 -->
+ 	<select id="getReplyCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+ 		SELECT COUNT(*) FROM WORKREPLY
+ 		WHERE REPLYNUM=#{seq}
+ 	</select>
  
  </mapper>
  

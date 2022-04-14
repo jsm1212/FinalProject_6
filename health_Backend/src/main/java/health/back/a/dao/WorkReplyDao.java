@@ -22,6 +22,9 @@ public interface WorkReplyDao {
 	
 	// 댓글 삭제하기
 	public int deleteReply(int seq);
+	
+	// 해당 게시글의 댓글 수
+	public int getReplyCount(int seq);
 }
 
 
