@@ -163,6 +163,8 @@ public class MypageController {
 		System.out.println("MypageController getMyLike 웹" + new Date());
 		
 		List<WorkBbsDto> list = sv.getMyLike(id);
+		System.out.print("!!!!!좋아요 목록 확인 : " + list);
+		
 		return list;
 	}
 	@RequestMapping(value = "/getMyLike_M", method = {RequestMethod.GET, RequestMethod.POST})
