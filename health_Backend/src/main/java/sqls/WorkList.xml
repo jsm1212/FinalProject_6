@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="health.back.a.dao.WorkListDao" >
+	<select id="getWorkList" resultType="health.back.a.dto.WorkListDto">
+		SELECT *
+		FROM WORK
+		ORDER BY REF DESC, STEP ASC
+	</select>
+	<select id="getWorkDetail" parameterType="java.lang.Integer" resultType="health.back.a.dto.WorkListDto">
+		SELECT * FROM WORK
+		WHERE WORKSEQ=#{seq}
+	</select>
+	
+</mapper>
