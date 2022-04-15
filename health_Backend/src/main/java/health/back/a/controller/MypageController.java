@@ -178,14 +178,7 @@ public class MypageController {
 	// 회원 목록 조회(관리자)
 	@RequestMapping(value = "/getMemberList", method = {RequestMethod.GET, RequestMethod.POST})
 	public List<LoginMemberDto> getMemberList(){
-		System.out.println("MypageController getMemberList 웹" + new Date());
-		
-		List<LoginMemberDto> list = sv.getMemberList();
-		return list;
-	}
-	@RequestMapping(value = "/getMemberList_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<LoginMemberDto> getMemberList_M(){
-		System.out.println("MypageController getMemberList 모바일" + new Date());
+		System.out.println("MypageController getMemberList" + new Date());
 		
 		List<LoginMemberDto> list = sv.getMemberList();
 		return list;
