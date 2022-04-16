@@ -105,21 +105,6 @@ public class WorkReplyController {
 		return "fail";
 	}
 	
-	// 댓글 삭제하기_App
-	@RequestMapping(value = "/deleteReply_M", method = {RequestMethod.GET, RequestMethod.POST})
-	public String deleteReply_M(int seq) {
-		// 클라이언트에서 보낸 삭제할 게시글의 seq
-		System.out.println("삭제할 게시글의 seq : " + seq);
-		
-		boolean b = sv.deleteReply(seq);
-		if(b) {
-			// 댓글 삭제 성공
-			return "success";
-		}
-		// 댓글 삭제 실패
-		return "fail";
-	}
-	
 	// 해당 게시글의 댓글 수
 	@RequestMapping(value = "/getReplyCount", method = {RequestMethod.GET, RequestMethod.POST})
 	public int getReplyCount(int seq) {
