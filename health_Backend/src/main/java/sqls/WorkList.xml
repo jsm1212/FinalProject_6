@@ -7,11 +7,12 @@
 	<select id="getWorkList" resultType="health.back.a.dto.WorkListDto">
 		SELECT *
 		FROM WORK
-		ORDER BY REF DESC, STEP ASC
+		ORDER BY PART
 	</select>
+	
 	<select id="getWorkDetail" parameterType="java.lang.Integer" resultType="health.back.a.dto.WorkListDto">
 		SELECT * FROM WORK
-		WHERE WORKSEQ=#{seq}
+		WHERE WORKSEQ=#{workseq}
 	</select>
 	
 </mapper>

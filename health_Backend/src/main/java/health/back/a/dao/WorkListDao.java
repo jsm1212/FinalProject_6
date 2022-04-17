@@ -15,7 +15,7 @@ public interface WorkListDao {
 	public List<WorkListDto> getWorkList();
 	
 	// 선택한 글 불러오기
-	public WorkListDto getWorkDetail(int seq);
+	public WorkListDto getWorkDetail(int workseq);
 	
 	
 	//조회수
