@@ -35,7 +35,7 @@
  	<update id="deleteReply" parameterType="java.lang.Integer">
  		UPDATE WORKREPLY
  		SET DEL=1
- 		WHERE REPLYNUM=#{seq}
+ 		WHERE WORKREPLYSEQ=#{seq}
  	</update>
  	
  	<!-- 해당 게시글의 댓글의 총 수 -->
