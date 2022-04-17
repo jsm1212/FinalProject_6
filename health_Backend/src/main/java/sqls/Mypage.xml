@@ -29,10 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 운동 루틴 -->
-	<!-- <select id="getMyRoutine" parameterType="java.lang.String" resultType="">
-		SELECT * FROM WORK
-		WHERE ID=#{id}
-	</select> -->
+	<select id="getMyRoutine" parameterType="java.lang.String" resultType="health.back.a.dto.WorkListDto">
+		SELECT w.WORKSEQ, w.WORKNAME, w.WORKIMAGE, w.PART
+		FROM WORK w, LIKEWORK l
+		WHERE l.USER_ID=#{id} AND l.WORK_NO=w.WORKSEQ
+		ORDER BY w.PART
+	</select>
 	
 	<!-- 내 게시글 목록 -->
 	<select id="getMyBbs" parameterType="java.lang.String" resultType="health.back.a.dto.WorkBbsDto">
