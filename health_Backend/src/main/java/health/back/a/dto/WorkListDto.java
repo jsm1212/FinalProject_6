@@ -1,53 +1,56 @@
 package health.back.a.dto;
 
 public class WorkListDto {
-	private int seq;
-	private String name;
-	private String content;
-	private String photo;
-	private int workcategory;
+	private int workseq;
+	private String workname;
+	private String workcontent;
+	private String workimage;
+	private int part;
 	private int worklike;
 	
 
 	public WorkListDto() {
+		super();
 	}
-	public WorkListDto(int seq, String name, String content, String photo, int workcategory, int worklike ) {
-		this.seq=seq;
-		this.name=name;
-		this.content=content;
-		this.photo=photo;
-		this.workcategory=workcategory;
+	public WorkListDto(int workseq, String name, String content, 
+			int workcategory, int worklike , String photo) {
+		super();
+		this.workseq=workseq;
+		this.workname=name;
+		this.workcontent=content;
+		this.part=workcategory;
 		this.worklike=worklike;
+		this.workimage=photo;
 	}
-	public int getSeq() {
-		return seq;
+	public int getWorkseq() {
+		return workseq;
 	}
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setWorkseq(int workseq) {
+		this.workseq = workseq;
 	}
-	public String getName() {
-		return name;
+	public String getWorkname() {
+		return workname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setWorkname(String workname) {
+		this.workname = workname;
 	}
-	public String getContent() {
-		return content;
+	public String getWorkcontent() {
+		return workcontent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setWorkcontent(String workcontent) {
+		this.workcontent = workcontent;
 	}
-	public String getPhoto() {
-		return photo;
+	public String getWorkimage() {
+		return workimage;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setWorkimage(String workimage) {
+		this.workimage = workimage;
 	}
-	public int getWorkcategory() {
-		return workcategory;
+	public int getPart() {
+		return part;
 	}
-	public void setWorkcategory(int workcategory) {
-		this.workcategory = workcategory;
+	public void setPart(int part) {
+		this.part = part;
 	}
 	public int getWorklike() {
 		return worklike;
@@ -57,8 +60,8 @@ public class WorkListDto {
 	}
 	@Override
 	public String toString() {
-		return "WorklistDto [seq=" + seq + ", name=" + name + ", content=" + content + ", photo=" + photo
-				+ ", workcategory=" + workcategory + ", worklike=" + worklike + "]";
+		return "WorkListDto [workseq=" + workseq + ", workname=" + workname + ", workcontent=" + workcontent
+				+ ", workimage=" + workimage + ", part=" + part + ", worklike=" + worklike + "]";
 	}
 	
 }

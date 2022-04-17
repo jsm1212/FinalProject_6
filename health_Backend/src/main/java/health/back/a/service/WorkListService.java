@@ -19,8 +19,8 @@ public class WorkListService {
 	public List<WorkListDto> getWorkList(){
 		return dao.getWorkList();
 	}
-	public WorkListDto getWorkDetail(int seq) {
-		return dao.getWorkDetail(seq);
+	public WorkListDto getWorkDetail(int workseq) {
+		return dao.getWorkDetail(workseq);
 	}
 
 }
