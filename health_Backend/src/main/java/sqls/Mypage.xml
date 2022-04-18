@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 운동 루틴 -->
 	<select id="getMyRoutine" parameterType="java.lang.String" resultType="health.back.a.dto.WorkListDto">
-		SELECT w.WORKSEQ, w.WORKNAME, w.WORKIMAGE, w.PART
+		SELECT w.WORKSEQ, w.WORKNAME, w.WORKIMAGE, w.PART, w.WORKCONTENT
 		FROM WORK w, LIKEWORK l
 		WHERE l.USER_ID=#{id} AND l.WORK_NO=w.WORKSEQ
 		ORDER BY w.PART
