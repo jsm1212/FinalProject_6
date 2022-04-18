@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import health.back.a.dto.LoginMemberDto;
 import health.back.a.dto.WorkBbsDto;
+import health.back.a.dto.WorkListDto;
 import health.back.a.dto.WorkReplyDto;
 import health.back.a.service.MypageService;
 
@@ -110,20 +111,20 @@ public class MypageController {
 	}
 	
 	// 운동 루틴
-//	@RequestMapping(value = "/getMyRoutine", method = {RequestMethod.GET, RequestMethod.POST})
-//	public List<> getMyRoutine(String id){
-//		System.out.println("MypageController getgetMyRoutineMyBbs 웹" + new Date());
-//		
-//		List<> list = sv.getMyRoutine(id);
-//		return list;
-//	}
-//	@RequestMapping(value = "/getMyRoutine_M", method = {RequestMethod.GET, RequestMethod.POST})
-//	public List<> getMyRoutine_M(String id){
-//		System.out.println("MypageController getgetMyRoutineMyBbs 모바일" + new Date());
-//		
-//		List<> list = sv.getMyRoutine(id);
-//		return list;
-//	}
+	@RequestMapping(value = "/getMyRoutine", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<WorkListDto> getMyRoutine(String id){
+		System.out.println("MypageController getgetMyRoutineMyBbs 웹" + new Date());
+		
+		List<WorkListDto> list = sv.getMyRoutine(id);
+		return list;
+	}
+	@RequestMapping(value = "/getMyRoutine_M", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<WorkListDto> getMyRoutine_M(@RequestBody String id){
+		System.out.println("MypageController getgetMyRoutineMyBbs 모바일" + new Date());
+		
+		List<WorkListDto> list = sv.getMyRoutine(id);
+		return list;
+	}
 	
 	// 내 게시글 목록
 	@RequestMapping(value = "/getMyBbs", method = {RequestMethod.GET, RequestMethod.POST})

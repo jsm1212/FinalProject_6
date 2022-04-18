@@ -1,14 +1,13 @@
 package health.back.a.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import health.back.a.dao.MypageDao;
 import health.back.a.dto.LoginMemberDto;
 import health.back.a.dto.WorkBbsDto;
+import health.back.a.dto.WorkListDto;
 import health.back.a.dto.WorkReplyDto;
 
 @Service
@@ -41,9 +40,9 @@ public class MypageService {
 	}
 	
 	// 운동 루틴
-//	public List<> getMyRoutine(String id){
-//		return dao.getMyRoutine(id);
-//	}
+	public List<WorkListDto> getMyRoutine(String id){
+		return dao.getMyRoutine(id);
+	}
 	
 	// 내 게시글 목록
 	public List<WorkBbsDto> getMyBbs(String id){
